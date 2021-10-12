@@ -9,10 +9,10 @@
 	<input type="text" name="name" >
      <input name="myActionName" type="submit" value="Search" />
 <?php
-require "config.php";
-$f =$_GET['name'];
-if($f!=""){
-$url = "http://api.giphy.com/v1/gifs/search?q=$f&api_key=$API&limit=1";
+include "config.php";
+
+if(isset($_GET['name'])){
+$url = "http://api.giphy.com/v1/gifs/search?q='{$_GET['name']}'&api_key=$API&limit=1";
 $obr = ( json_decode(file_get_contents($url),true));
 if($obr['data'][0]['id']!=""){
 	echo "<br>";
